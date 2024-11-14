@@ -26,3 +26,7 @@ library(dplyr)
 n_distinct(result$mps_agency)
 # count of responses by agency
 result %>% group_by(mps_agency) %>% summarize(count_resp = n()) %>% print(n=Inf)
+# count responses by gender
+result %>% group_by(c_gender) %>% summarize(count_resp = n()) %>% print(n=Inf)
+# count responses by race/ethnicity
+result %>% group_by(c_race_eth) %>% summarize(count_resp = n()) %>% print(n=Inf)
