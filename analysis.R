@@ -19,3 +19,10 @@ query <- "SELECT * FROM  mps_training;"
 
 # execute query and load the result as a dataframe for analysis
 result <- dbGetQuery(con,query)
+
+# Begin the descriptive analysis
+library(dplyr)
+# number of agencies
+n_distinct(result$mps_agency)
+# count of responses by agency
+result %>% group_by(mps_agency) %>% summarize(count_resp = n()) %>% print(n=Inf)
