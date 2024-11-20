@@ -1,0 +1,27 @@
+
+Call:
+lm(formula = result$d_pgo_avg ~ result$i_average + result$mps_supervisor_dummy + 
+    result$is_female + result$is_minority + result$age_39_less + 
+    result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.7878 -0.2964  0.0261  0.3460  6.8653 
+
+Coefficients:
+                             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  2.700139   0.030307  89.092   <2e-16 ***
+result$i_average             0.243107   0.007928  30.666   <2e-16 ***
+result$mps_supervisor_dummy  0.254669   0.020337  12.522   <2e-16 ***
+result$is_female            -0.135321   0.013944  -9.704   <2e-16 ***
+result$is_minority           0.130272   0.014387   9.055   <2e-16 ***
+result$age_39_less           0.240876   0.014869  16.200   <2e-16 ***
+result$has_masters_plus     -0.029519   0.014433  -2.045   0.0409 *  
+result$c_fair_org_pay        0.011020   0.006961   1.583   0.1134    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8729 on 15352 degrees of freedom
+Multiple R-squared:  0.1112,	Adjusted R-squared:  0.1108 
+F-statistic: 274.5 on 7 and 15352 DF,  p-value: < 2.2e-16
+
