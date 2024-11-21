@@ -176,6 +176,8 @@ result <- dbGetQuery(con,query)
 # histograms of the values
 hist(result$i_average, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,5000))
 mean(result$i_average)
+hist(result$d_average, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,4000))
+
 
 hist(result$d_average, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,4000))
 mean(result$d_average)
