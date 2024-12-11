@@ -69,14 +69,13 @@ abline(lm(result$d_resign_gov ~ result$i_prov_nec_train), col="red")
 query <- "SELECT
   mps_weight,
 	(i_prov_nec_train::DECIMAL + i_prov_opp_growth::DECIMAL + i_given_opp_skills::DECIMAL)/3 as i_average, 
-	(d_resign_gov::DECIMAL + d_move_diff_occ::DECIMAL)/2 as d_average
+	d_resign_gov::int
 FROM mps_training 
 WHERE c_retire_elg = '0' 
 	AND (i_prov_nec_train != 'D' AND i_prov_nec_train IS NOT NULL)
 	AND (i_prov_opp_growth != 'D' AND i_prov_opp_growth IS NOT NULL) 
 	AND (i_given_opp_skills != 'D' AND i_given_opp_skills IS NOT NULL)
-	AND (d_resign_gov != 'D' AND d_resign_gov IS NOT NULL)
-  AND (d_move_diff_occ != 'D' AND d_move_diff_occ IS NOT NULL);"
+	AND (d_resign_gov != 'D' AND d_resign_gov IS NOT NULL);"
 result <- dbGetQuery(con,query)
 
 # plot(result)
@@ -87,11 +86,11 @@ result <- dbGetQuery(con,query)
 hist(result$i_average, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,5000))
 mean(result$i_average)
 
-hist(result$d_average, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,7000))
-mean(result$d_average)
-cor(result$i_average,result$d_average)
-model <- lm(result$d_average ~ result$i_average, weights = result$mps_weight)
+hist(result$d_resign_gov, main=NULL,xlab="Average of Responses",ylab="Count of Responses",ylim=range(0,7000))
 sink("itt_lm_summary.txt")
+print(paste("mean ",mean(result$d_resign_gov)))
+print(paste("r-value ",cor(result$i_average,result$d_resign_gov)))
+model <- lm(result$d_resign_gov ~ result$i_average, weights = result$mps_weight)
 print(summary(model))
 sink()
 
@@ -273,6 +272,29 @@ sink()
 
 
 ### Additional analysis
+
+## calculate the cronbach's alpha
+# install.packages("ltm")
+library("ltm")
+
+# cronbach's alpha for PJS
+pjs <- result[c("d_meaningful_work","d_recommend_agency","d_use_job_skills")]
+
+cronbach.alpha(pjs %>% filter(!is.na(d_meaningful_work) & !is.na(d_recommend_agency) & !is.na(d_use_job_skills)))
+
+# cronbach's alpha for AS
+as <- result[c("d_unit_high_qual_prod","d_use_wf_eff","d_retain_best")]
+cronbach.alpha(as %>% filter(!is.na(d_unit_high_qual_prod) & !is.na(d_use_wf_eff) & !is.na(d_retain_best)))
+
+# cronbach's alpha for PGO
+pgo <- result[c("d_take_new_roles","d_take_high_tech_resp","d_take_super_resp")]
+cronbach.alpha(pgo %>% filter(!is.na(d_take_new_roles) & !is.na(d_take_high_tech_resp) & !is.na(d_take_super_resp)))
+
+# cronbach's alpha for IT
+it <- result[c("d_move_diff_occ","d_resign_gov")]
+cronbach.alpha(it %>% filter(!is.na(d_move_diff_occ) & !is.na(d_resign_gov)))
+
+## Additional
 
 install.packages("survey")
 install.packages("srvyr")

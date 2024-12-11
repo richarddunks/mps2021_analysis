@@ -1,19 +1,23 @@
+[1] "mean  1.68691499522445"
+[1] "r-value[1] 2
+[1] 3.759185
+3"
 
 Call:
-lm(formula = result$d_average ~ result$i_average, weights = result$mps_weight)
+lm(formula = result$d_resign_gov ~ result$i_average, weights = result$mps_weight)
 
 Weighted Residuals:
     Min      1Q  Median      3Q     Max 
--6.0444 -0.3812 -0.0415  0.2316 14.5408 
+-4.5264 -0.4275 -0.0952  0.2604 15.4915 
 
 Coefficients:
                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       3.129704   0.022067  141.83   <2e-16 ***
-result$i_average -0.284978   0.005882  -48.45   <2e-16 ***
+(Intercept)       2.383338   0.022499  105.93   <2e-16 ***
+result$i_average -0.178793   0.006006  -29.77   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.856 on 19967 degrees of freedom
-Multiple R-squared:  0.1052,	Adjusted R-squared:  0.1051 
-F-statistic:  2347 on 1 and 19967 DF,  p-value: < 2.2e-16
+Residual standard error: 0.8946 on 20938 degrees of freedom
+Multiple R-squared:  0.0406,	Adjusted R-squared:  0.04056 
+F-statistic: 886.1 on 1 and 20938 DF,  p-value: < 2.2e-16
 
