@@ -311,8 +311,16 @@ sink("multi_as_results.txt")
 print(summary(as_model))
 sink()
 
-## output results with stargazer
-stargazer(itt_model,pjs_model,pgo_model,as_model,type="html",summary=TRUE,out= "multi_model_out.htm")
+## output multivariate results with stargazer
+stargazer(itt_model,pjs_model,pgo_model,as_model,type="html",summary=TRUE,out= "multi_model_out.htm",covariate.labels=c("Perception of Access to Training and Development","Supervisor or Executive","Identifies as Female","Identifies as a Minority","Is 39 years old or younger","Has a Masters Degree or Higher","Response to Organization Pays Fairly (strongly disagree = 1)"),dep.var.labels=c("Intent to Turnover","Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
+
+### linear modeling for stargazer
+itt_lm <- lm(result$d_resign_gov ~ result$i_average, weights = result$mps_weight)
+pjs_lm <- lm(result$d_pjs_avg ~ result$i_average, weights = result$mps_weight)
+pgo_lm <- lm(result$d_pgo_avg ~ result$i_average, weights = result$mps_weight)
+as_lm <- lm(result$d_as_average ~ result$i_average, weights = result$mps_weight)
+
+stargazer(itt_lm,pjs_lm,pgo_lm,as_lm,type="html",summary=TRUE,out="biv_model_out.htm",covariate.labels = "Perception of Access to Training and Development",dep.var.labels=c("Intent to Turnover","Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
 
 ### Additional analysis
 
