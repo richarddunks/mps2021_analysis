@@ -1,27 +1,28 @@
 
 Call:
-lm(formula = as_result$d_as_average ~ as_result$i_average + as_result$mps_supervisor_dummy + 
-    as_result$is_female + as_result$is_minority + as_result$age_39_less + 
-    as_result$has_masters_plus + as_result$c_fair_org_pay, weights = as_result$mps_weight)
+lm(formula = result$d_as_average ~ result$i_average + result$mps_supervisor_dummy + 
+    result$is_female + result$is_minority + result$age_39_less + 
+    result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
 
 Weighted Residuals:
     Min      1Q  Median      3Q     Max 
 -9.3603 -0.1671  0.0453  0.2247  5.7714 
 
 Coefficients:
-                                Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                     0.993021   0.016846  58.946  < 2e-16 ***
-as_result$i_average             0.614594   0.004411 139.343  < 2e-16 ***
-as_result$mps_supervisor_dummy -0.022054   0.010972  -2.010 0.044439 *  
-as_result$is_female             0.001472   0.007724   0.191 0.848866    
-as_result$is_minority           0.029150   0.007939   3.672 0.000241 ***
-as_result$age_39_less          -0.060237   0.008581  -7.020 2.28e-12 ***
-as_result$has_masters_plus     -0.044803   0.007991  -5.607 2.08e-08 ***
-as_result$c_fair_org_pay        0.113703   0.003847  29.559  < 2e-16 ***
+                             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  0.993021   0.016846  58.946  < 2e-16 ***
+result$i_average             0.614594   0.004411 139.343  < 2e-16 ***
+result$mps_supervisor_dummy -0.022054   0.010972  -2.010 0.044439 *  
+result$is_female             0.001472   0.007724   0.191 0.848866    
+result$is_minority           0.029150   0.007939   3.672 0.000241 ***
+result$age_39_less          -0.060237   0.008581  -7.020 2.28e-12 ***
+result$has_masters_plus     -0.044803   0.007991  -5.607 2.08e-08 ***
+result$c_fair_org_pay        0.113703   0.003847  29.559  < 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 0.5784 on 23919 degrees of freedom
+  (1194 observations deleted due to missingness)
 Multiple R-squared:  0.5736,	Adjusted R-squared:  0.5735 
 F-statistic:  4597 on 7 and 23919 DF,  p-value: < 2.2e-16
 

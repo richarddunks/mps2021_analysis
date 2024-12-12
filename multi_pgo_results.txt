@@ -1,28 +1,28 @@
 
 Call:
-lm(formula = pgo_result$d_pgo_avg ~ pgo_result$i_average + pgo_result$mps_supervisor_dummy + 
-    pgo_result$is_female + pgo_result$is_minority + pgo_result$age_39_less + 
-    pgo_result$has_masters_plus + pgo_result$c_fair_org_pay, 
-    weights = pgo_result$mps_weight)
+lm(formula = result$d_pgo_avg ~ result$i_average + result$mps_supervisor_dummy + 
+    result$is_female + result$is_minority + result$age_39_less + 
+    result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
 
 Weighted Residuals:
      Min       1Q   Median       3Q      Max 
 -12.4982  -0.3109   0.0259   0.3475   6.6828 
 
 Coefficients:
-                                 Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                      2.631970   0.027275  96.498  < 2e-16 ***
-pgo_result$i_average             0.225682   0.007084  31.858  < 2e-16 ***
-pgo_result$mps_supervisor_dummy  0.250154   0.017890  13.983  < 2e-16 ***
-pgo_result$is_female            -0.098673   0.012416  -7.947    2e-15 ***
-pgo_result$is_minority           0.165569   0.012721  13.015  < 2e-16 ***
-pgo_result$age_39_less           0.314329   0.013671  22.993  < 2e-16 ***
-pgo_result$has_masters_plus     -0.028854   0.012858  -2.244  0.02484 *  
-pgo_result$c_fair_org_pay        0.018061   0.006232   2.898  0.00376 ** 
+                             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  2.631970   0.027275  96.498  < 2e-16 ***
+result$i_average             0.225682   0.007084  31.858  < 2e-16 ***
+result$mps_supervisor_dummy  0.250154   0.017890  13.983  < 2e-16 ***
+result$is_female            -0.098673   0.012416  -7.947    2e-15 ***
+result$is_minority           0.165569   0.012721  13.015  < 2e-16 ***
+result$age_39_less           0.314329   0.013671  22.993  < 2e-16 ***
+result$has_masters_plus     -0.028854   0.012858  -2.244  0.02484 *  
+result$c_fair_org_pay        0.018061   0.006232   2.898  0.00376 ** 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 0.8967 on 21747 degrees of freedom
+  (3366 observations deleted due to missingness)
 Multiple R-squared:  0.09889,	Adjusted R-squared:  0.0986 
 F-statistic: 340.9 on 7 and 21747 DF,  p-value: < 2.2e-16
 
