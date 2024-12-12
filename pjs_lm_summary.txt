@@ -1,19 +1,21 @@
+[1] "mean  4.15424898582793"
+[1] "r-value  0.684571316051915"
 
 Call:
 lm(formula = result$d_average ~ result$i_average, weights = result$mps_weight)
 
 Weighted Residuals:
     Min      1Q  Median      3Q     Max 
--6.5347 -0.1940  0.0427  0.2154  6.4054 
+-6.5755 -0.1852  0.0381  0.1986  6.4579 
 
 Coefficients:
                  Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      1.965277   0.015392   127.7   <2e-16 ***
-result$i_average 0.580523   0.004127   140.7   <2e-16 ***
+(Intercept)      1.987376   0.012989   153.0   <2e-16 ***
+result$i_average 0.577556   0.003478   166.1   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.6351 on 22073 degrees of freedom
-Multiple R-squared:  0.4726,	Adjusted R-squared:  0.4726 
-F-statistic: 1.978e+04 on 1 and 22073 DF,  p-value: < 2.2e-16
+Residual standard error: 0.6188 on 31633 degrees of freedom
+Multiple R-squared:  0.4657,	Adjusted R-squared:  0.4657 
+F-statistic: 2.757e+04 on 1 and 31633 DF,  p-value: < 2.2e-16
 

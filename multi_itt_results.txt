@@ -1,27 +1,28 @@
 
 Call:
-lm(formula = result$d_itt_avg ~ result$i_average + result$mps_supervisor_dummy + 
-    result$is_female + result$is_minority + result$age_39_less + 
-    result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
+lm(formula = itt_result$d_resign_gov ~ itt_result$i_average + 
+    itt_result$mps_supervisor_dummy + itt_result$is_female + 
+    itt_result$is_minority + itt_result$age_39_less + itt_result$has_masters_plus + 
+    itt_result$c_fair_org_pay, weights = itt_result$mps_weight)
 
 Weighted Residuals:
     Min      1Q  Median      3Q     Max 
--6.5477 -0.2679 -0.0632  0.1748  6.7470 
+-5.0437 -0.4143 -0.0995  0.2494 15.3435 
 
 Coefficients:
-                             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                  3.421485   0.021893 156.285  < 2e-16 ***
-result$i_average             0.017128   0.005726   2.991  0.00278 ** 
-result$mps_supervisor_dummy  0.037182   0.014691   2.531  0.01138 *  
-result$is_female             0.043937   0.010073   4.362 1.30e-05 ***
-result$is_minority           0.229776   0.010393  22.109  < 2e-16 ***
-result$age_39_less           0.003979   0.010741   0.370  0.71103    
-result$has_masters_plus     -0.082836   0.010426  -7.945 2.07e-15 ***
-result$c_fair_org_pay       -0.044055   0.005028  -8.761  < 2e-16 ***
+                                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                      2.447727   0.028529  85.799  < 2e-16 ***
+itt_result$i_average            -0.123733   0.007431 -16.650  < 2e-16 ***
+itt_result$mps_supervisor_dummy  0.012583   0.019048   0.661   0.5089    
+itt_result$is_female             0.009183   0.012988   0.707   0.4795    
+itt_result$is_minority           0.076324   0.013415   5.689  1.3e-08 ***
+itt_result$age_39_less           0.023129   0.014024   1.649   0.0991 .  
+itt_result$has_masters_plus     -0.019892   0.013466  -1.477   0.1396    
+itt_result$c_fair_org_pay       -0.082958   0.006483 -12.797  < 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.6305 on 15352 degrees of freedom
-Multiple R-squared:  0.04387,	Adjusted R-squared:  0.04343 
-F-statistic: 100.6 on 7 and 15352 DF,  p-value: < 2.2e-16
+Residual standard error: 0.8797 on 18161 degrees of freedom
+Multiple R-squared:  0.04812,	Adjusted R-squared:  0.04775 
+F-statistic: 131.2 on 7 and 18161 DF,  p-value: < 2.2e-16
 
