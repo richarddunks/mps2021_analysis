@@ -301,7 +301,7 @@ SELECT
 	CASE 
 		WHEN c_age = '4' THEN 0
 		WHEN c_age = '1' THEN 1 
-		ELSE NULL END AS c_age_dummy,
+		ELSE NULL END AS age_39_less,
 	CASE WHEN c_ed_level = '5' THEN 1
 		WHEN c_ed_level = '3' THEN 0
 		WHEN c_ed_level = '1' THEN 0
@@ -321,10 +321,13 @@ SELECT
 			END AS i_average,
 -- itt dependent variable
 	CASE
-		WHEN d_resign_gov != 'D' AND d_resign_gov IS NOT NULL
+		WHEN 
+			d_resign_gov != 'D' 
+			AND d_resign_gov IS NOT NULL
+			AND c_retire_elg = '0'
 		THEN d_resign_gov::INT
 		ELSE NULL
-		END AS d_resign_gov,
+			END AS d_resign_gov,
 -- pjs dependent variables
 	CASE 
 		WHEN 
@@ -338,27 +341,35 @@ SELECT
 		ELSE NULL 
 			END AS d_pjs_avg,
 -- pgo dependent variables
-	(d_take_new_roles::DECIMAL + d_take_high_tech_resp::DECIMAL + d_take_super_resp::DECIMAL)/3 as d_pgo_avg,
+	CASE 
+		WHEN 
+			d_take_new_roles != 'D' 
+			AND d_take_new_roles IS NOT NULL
+			AND d_take_high_tech_resp != 'D' 
+			AND d_take_high_tech_resp IS NOT NULL
+			AND d_take_super_resp != 'D' 
+			AND d_take_super_resp IS NOT NULL
+		THEN (d_take_new_roles::DECIMAL + d_take_high_tech_resp::DECIMAL + d_take_super_resp::DECIMAL)/3
+		ELSE NULL 
+			END AS d_pgo_avg,
 -- as dependent variables
-	(d_unit_high_qual_prod::DECIMAL + d_use_wf_eff::DECIMAL + d_retain_best::DECIMAL)/3 as d_as_average 
+	CASE 
+		WHEN
+			d_unit_high_qual_prod != 'D' 
+			AND d_unit_high_qual_prod IS NOT NULL
+			AND d_use_wf_eff != 'D' 
+			AND d_use_wf_eff IS NOT NULL
+			AND d_retain_best != 'D' 
+			AND d_retain_best IS NOT NULL
+		THEN (d_unit_high_qual_prod::DECIMAL + d_use_wf_eff::DECIMAL + d_retain_best::DECIMAL)/3 
+		ELSE NULL 
+			END AS d_as_average 
 FROM mps_training 
-WHERE c_retire_elg = '0' 
+WHERE  
 	-- control variables
-	AND mps_supervisor IS NOT NULL
+	mps_supervisor IS NOT NULL
 	AND c_gender IS NOT NULL
 	AND c_race_eth IS NOT NULL
 	AND c_age IS NOT NULL
 	AND c_ed_level IS NOT NULL
-	AND (c_fair_org_pay	 != 'D' AND c_fair_org_pay IS NOT NULL)
-
-
-	-- PJS dependent variables
-	AND 
-	-- PGO dependent variables
-	AND (d_take_new_roles != 'D' AND d_take_new_roles IS NOT NULL)
-	AND (d_take_high_tech_resp != 'D' AND d_take_high_tech_resp IS NOT NULL)
-	AND (d_take_super_resp != 'D' AND d_take_super_resp IS NOT NULL)
-	-- AS dependent variables
-	AND (d_unit_high_qual_prod != 'D' AND d_unit_high_qual_prod IS NOT NULL)
-	AND (d_use_wf_eff != 'D' AND d_use_wf_eff IS NOT NULL)
-	AND (d_retain_best != 'D' AND d_retain_best IS NOT NULL);
+	AND (c_fair_org_pay	 != 'D' AND c_fair_org_pay IS NOT NULL);
