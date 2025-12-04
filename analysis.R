@@ -283,11 +283,11 @@ WHERE
 # execute query and load the result as a dataframe for analysis
 result <- dbGetQuery(con,query)
 
-# model building (ITT)
-itt_model <- lm(result$d_resign_gov ~ result$i_average + result$mps_supervisor_dummy + result$is_female + result$is_minority + result$age_39_less + result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
-sink("multi_itt_results.txt")
-print(summary(itt_model))
-sink()
+## model building (ITT) -> pulled from the analysis
+# itt_model <- lm(result$d_resign_gov ~ result$i_average + result$mps_supervisor_dummy + result$is_female + result$is_minority + result$age_39_less + result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
+# sink("multi_itt_results.txt")
+# print(summary(itt_model))
+# sink()
 
 # model building (PJS)
 
@@ -312,15 +312,15 @@ print(summary(as_model))
 sink()
 
 ## output multivariate results with stargazer
-stargazer(itt_model,pjs_model,pgo_model,as_model,type="html",summary=TRUE,out= "multi_model_out.htm",covariate.labels=c("Perception of Access to Training and Development","Supervisor or Executive","Identifies as Female","Identifies as a Minority","Is 39 years old or younger","Has a Masters Degree or Higher","Response to Organization Pays Fairly (strongly disagree = 1)"),dep.var.labels=c("Intent to Turnover","Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
+stargazer(pjs_model,pgo_model,as_model,type="html",summary=TRUE,out= "multi_model_out.htm",covariate.labels=c("Perception of Access to Training and Development","Supervisor or Executive","Identifies as Female","Identifies as a Minority","Is 39 years old or younger","Has a Masters Degree or Higher","Response to Organization Pays Fairly (strongly disagree = 1)"),dep.var.labels=c("Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
 
 ### linear modeling for stargazer
-itt_lm <- lm(result$d_resign_gov ~ result$i_average, weights = result$mps_weight)
+# itt_lm <- lm(result$d_resign_gov ~ result$i_average, weights = result$mps_weight)
 pjs_lm <- lm(result$d_pjs_avg ~ result$i_average, weights = result$mps_weight)
 pgo_lm <- lm(result$d_pgo_avg ~ result$i_average, weights = result$mps_weight)
 as_lm <- lm(result$d_as_average ~ result$i_average, weights = result$mps_weight)
 
-stargazer(itt_lm,pjs_lm,pgo_lm,as_lm,type="html",summary=TRUE,out="biv_model_out.htm",covariate.labels = "Perception of Access to Training and Development",dep.var.labels=c("Intent to Turnover","Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
+stargazer(pjs_lm,pgo_lm,as_lm,type="html",summary=TRUE,out="biv_model_out.htm",covariate.labels = "Perception of Access to Training and Development",dep.var.labels=c("Personal Job Satisfaction","Professional Growth Opportunities","Agency Satisfaction"))
 
 ### Additional analysis
 
