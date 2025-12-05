@@ -370,6 +370,20 @@ query <- "SELECT * FROM  mps_training;"
 # execute query and load the result as a dataframe for analysis
 result <- dbGetQuery(con,query)
 
+# add the cfa of constructs
+# install.packages('lavaan')
+# install.packages('semTools')
+# install.packages('sqlhelper')
+library(lavaan)
+library(semTools)
+library(sqlhelper)
+
+# query string
+query <- sqlhelper::read_sql("")
+
+
+# execute query and load the result as a dataframe for analysis
+result <- dbGetQuery(con,query)
 
 # check correlations of weights to variables of interest
 # check weighted and unweighted descriptive estimates, check with standard errors
