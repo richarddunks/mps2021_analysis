@@ -283,6 +283,9 @@ WHERE
 # execute query and load the result as a dataframe for analysis
 result <- dbGetQuery(con,query)
 
+# export data to CSV so don't need to call the database
+write.csv(result,"model_data.csv",row.names = FALSE)
+
 ## model building (ITT) -> pulled from the analysis
 # itt_model <- lm(result$d_resign_gov ~ result$i_average + result$mps_supervisor_dummy + result$is_female + result$is_minority + result$age_39_less + result$has_masters_plus + result$c_fair_org_pay, weights = result$mps_weight)
 # sink("multi_itt_results.txt")
